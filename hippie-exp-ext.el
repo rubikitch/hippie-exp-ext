@@ -5,7 +5,7 @@
 ;; Author: rubikitch <rubikitch@ruby-lang.org>
 ;; Maintainer: rubikitch <rubikitch@ruby-lang.org>
 ;; Copyright (C) 2012, rubikitch, all rights reserved.
-;; Time-stamp: <2015-10-11 17:46:02 rubikitch>
+;; Time-stamp: <2015-10-11 17:47:08 rubikitch>
 ;; Created: 2012-09-08 12:56:37
 ;; Version: 0.1
 ;;           By: rubikitch
@@ -99,7 +99,7 @@
 
 ;;; Require
 (require 'hippie-exp)
-(eval-when-compile (require 'cl))
+(eval-when-compile (require 'cl-lib))
 
 ;;; Code:
 (defcustom he-dabbrev-chars "0-9a-zA-Z\\?!_-"
