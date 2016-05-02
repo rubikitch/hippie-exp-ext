@@ -4,8 +4,8 @@
 ;; Description: Extension of hippie-expand
 ;; Author: rubikitch <rubikitch@ruby-lang.org>
 ;; Maintainer: rubikitch <rubikitch@ruby-lang.org>
-;; Copyright (C) 2012, rubikitch, all rights reserved.
-;; Time-stamp: <2016-05-03 08:23:08 rubikitch>
+;; Copyright (C) 2012,2015,2016 rubikitch, all rights reserved.
+;; Time-stamp: <2016-05-03 08:26:13 rubikitch>
 ;; Created: 2012-09-08 12:56:37
 ;; Version: 0.1
 ;;           By: rubikitch
