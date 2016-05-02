@@ -5,7 +5,7 @@
 ;; Author: rubikitch <rubikitch@ruby-lang.org>
 ;; Maintainer: rubikitch <rubikitch@ruby-lang.org>
 ;; Copyright (C) 2012, rubikitch, all rights reserved.
-;; Time-stamp: <2016-05-03 07:06:26 rubikitch>
+;; Time-stamp: <2016-05-03 07:18:57 rubikitch>
 ;; Created: 2012-09-08 12:56:37
 ;; Version: 0.1
 ;;           By: rubikitch
@@ -194,9 +194,9 @@
 
 (defun he-limited-chars-replace-functions (func old)
   (cl-letf (((symbol-function 'he-dabbrev-search)
-          (symbol-function 'he-dabbrev-search--limited-chars))
-         ((symbol-function 'he-dabbrev-beg)
-          (symbol-function 'he-dabbrev-beg--limited-chars)))
+             (symbol-function 'he-dabbrev-search--limited-chars))
+            ((symbol-function 'he-dabbrev-beg)
+             (symbol-function 'he-dabbrev-beg--limited-chars)))
     (funcall func old)))
 
 (defun try-expand-dabbrev-limited-chars (old)
