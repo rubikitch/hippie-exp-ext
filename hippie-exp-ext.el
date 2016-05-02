@@ -5,7 +5,7 @@
 ;; Author: rubikitch <rubikitch@ruby-lang.org>
 ;; Maintainer: rubikitch <rubikitch@ruby-lang.org>
 ;; Copyright (C) 2012, rubikitch, all rights reserved.
-;; Time-stamp: <2016-05-03 07:41:57 rubikitch>
+;; Time-stamp: <2016-05-03 08:02:26 rubikitch>
 ;; Created: 2012-09-08 12:56:37
 ;; Version: 0.1
 ;;           By: rubikitch
@@ -112,11 +112,11 @@
   :group 'hippie-exp)
 
 ;; refactored and generalized
-(defun try-expand-dabbrev-0 (old search-func limit-up limit-down)
+(defun try-expand-dabbrev-0 (old beg-func search-func limit-up limit-down)
   "Generalized version of `try-expand-dabbrev'."
   (let (expansion)
     (unless old
-      (he-init-string (he-dabbrev-beg) (point))
+      (he-init-string (funcall beg-func) (point))
       (set-marker he-search-loc he-string-beg)
       (setq he-search-bw t))
 
@@ -145,6 +145,12 @@
            (he-substitute-string expansion t)
            t))))
 
+(defun he-dabbrev-beg--substring ()
+  (let ((op (point)))
+    (save-excursion
+      (re-search-backward (substring he-dabbrev-substring-start-pattern 1) nil t)
+      (point))))
+
 (defun he-dabbrev-substring-search (pattern &optional reverse limit)
   (when (string-match he-dabbrev-substring-start-pattern pattern)
     (let* ((result ())
@@ -163,7 +169,7 @@
       result)))
 
 (defun try-expand-dabbrev-substring (old)
-  (try-expand-dabbrev-0 old 'he-dabbrev-substring-search nil nil))
+  (try-expand-dabbrev-0 old 'he-dabbrev-beg--substring 'he-dabbrev-substring-search nil nil))
 (defun try-expand-dabbrev-substring-visible (old)
   (cl-letf (((symbol-function 'he-dabbrev-search)
              (symbol-function 'he-dabbrev-substring-search)))
@@ -175,7 +181,7 @@
              (lambda () (mapcar 'window-buffer (window-list)))))
     (try-expand-dabbrev-all-buffers old)))
 (defun try-expand-dabbrev-substring-visible-in-current-buffer (old)
-  (try-expand-dabbrev-0 old 'he-dabbrev-substring-search (window-start) (window-end)))
+  (try-expand-dabbrev-0 old 'he-dabbrev-beg--substring 'he-dabbrev-substring-search (window-start) (window-end)))
 
 (defun he-dabbrev-search--limited-chars (pattern &optional reverse limit)
   (let ((result ())
