@@ -5,7 +5,7 @@
 ;; Author: rubikitch <rubikitch@ruby-lang.org>
 ;; Maintainer: rubikitch <rubikitch@ruby-lang.org>
 ;; Copyright (C) 2012, rubikitch, all rights reserved.
-;; Time-stamp: <2016-05-03 07:33:51 rubikitch>
+;; Time-stamp: <2016-05-03 07:41:57 rubikitch>
 ;; Created: 2012-09-08 12:56:37
 ;; Version: 0.1
 ;;           By: rubikitch
@@ -222,8 +222,8 @@
   (interactive)
   (hippie-expand-with-function-list
    '(try-expand-dabbrev-substring-visible-in-current-buffer
-     try-expand-dabbrev-substring
      try-expand-dabbrev-substring-visible
+     try-expand-dabbrev-substring
      try-expand-dabbrev-substring-visible-windows
      try-expand-dabbrev-limited-chars
      try-expand-dabbrev-limited-chars-visible
