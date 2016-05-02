@@ -5,7 +5,7 @@
 ;; Author: rubikitch <rubikitch@ruby-lang.org>
 ;; Maintainer: rubikitch <rubikitch@ruby-lang.org>
 ;; Copyright (C) 2012, rubikitch, all rights reserved.
-;; Time-stamp: <2016-05-03 07:18:57 rubikitch>
+;; Time-stamp: <2016-05-03 07:33:51 rubikitch>
 ;; Created: 2012-09-08 12:56:37
 ;; Version: 0.1
 ;;           By: rubikitch
@@ -168,6 +168,12 @@
   (cl-letf (((symbol-function 'he-dabbrev-search)
              (symbol-function 'he-dabbrev-substring-search)))
     (try-expand-dabbrev-visible old)))
+(defun try-expand-dabbrev-substring-visible-windows (old)
+  (cl-letf (((symbol-function 'he-dabbrev-search)
+             (symbol-function 'he-dabbrev-substring-search))
+            ((symbol-function 'buffer-list)
+             (lambda () (mapcar 'window-buffer (window-list)))))
+    (try-expand-dabbrev-all-buffers old)))
 (defun try-expand-dabbrev-substring-visible-in-current-buffer (old)
   (try-expand-dabbrev-0 old 'he-dabbrev-substring-search (window-start) (window-end)))
 
@@ -218,6 +224,7 @@
    '(try-expand-dabbrev-substring-visible-in-current-buffer
      try-expand-dabbrev-substring
      try-expand-dabbrev-substring-visible
+     try-expand-dabbrev-substring-visible-windows
      try-expand-dabbrev-limited-chars
      try-expand-dabbrev-limited-chars-visible
      try-expand-dabbrev-limited-chars-all-buffers)))
