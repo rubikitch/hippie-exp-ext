@@ -5,7 +5,7 @@
 ;; Author: rubikitch <rubikitch@ruby-lang.org>
 ;; Maintainer: rubikitch <rubikitch@ruby-lang.org>
 ;; Copyright (C) 2012, rubikitch, all rights reserved.
-;; Time-stamp: <2016-05-03 08:13:40 rubikitch>
+;; Time-stamp: <2016-05-03 08:18:00 rubikitch>
 ;; Created: 2012-09-08 12:56:37
 ;; Version: 0.1
 ;;           By: rubikitch
@@ -146,10 +146,7 @@
            t))))
 
 (defun he-dabbrev-beg--substring ()
-  (let ((op (point)))
-    (save-excursion
-      (re-search-backward (substring he-dabbrev-substring-start-pattern 1) nil t)
-      (point))))
+  (he-dabbrev-beg--limited-chars))
 
 (defun he-dabbrev-substring-search (pattern &optional reverse limit)
   (when (string-match he-dabbrev-substring-start-pattern pattern)
